@@ -1,4 +1,4 @@
-### There I describe shortly the The Dependency Inversion Principle - the one of the S.O.L.I.D principles.
+#### There I describe shortly the The Dependency Inversion Principle - the one of the S.O.L.I.D principles.
 
 The Dependency Inversion Principle has two parts:
 
@@ -7,7 +7,7 @@ The Dependency Inversion Principle has two parts:
 
 Thus using this principle you may be able construct some programm with many classes, you can declare what this classes should do, but it doesn't mean that these classes fulfill somethings. In other words, in high level class you can only declare the interface of low-level class implying that it shoul do something, but it dosen't mean that it makes something, at least at the moment when you are presenting (showing) you program structure. 
 
-EXAMPLE:
+#####Example:
 ```
  class Report
   def body
