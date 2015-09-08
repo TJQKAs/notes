@@ -1,4 +1,4 @@
-#### There I describe shortly the The Dependency Inversion Principle - the one of the S.O.L.I.D principles.
+#### The Dependency Inversion Principle - the one of the S.O.L.I.D principles.
 
 The Dependency Inversion Principle has two parts:
 
