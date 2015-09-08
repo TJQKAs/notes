@@ -24,7 +24,7 @@ end
 ``` 
 The Report class is hardcoded it by class Formatter, thus we see  a dependency from the Report to the JSONFormatter. Since the Report is a more abstract (high-level) concept than the JSONFormatter, we're effectively breaking the DIP.
 
-We can solve it the exact it with dependency injection:
+We can solve it with dependency injection:
 ```
 class Report
   def body
