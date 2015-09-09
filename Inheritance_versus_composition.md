@@ -1,4 +1,4 @@
-Describe the difference between composition and inheritance.
+#####Describe the difference between composition and inheritance.
 
 Inheritance is used is used when we want a new a class to inherit the features/methods from its parent class. The 'child' class will be able to use all features of its 'parent' class. However, any modifications made to the child class will only affect the child class, and not the parent which will remain as originally defined.
 
