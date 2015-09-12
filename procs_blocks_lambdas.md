@@ -85,6 +85,32 @@ array_2.iterate!(square)
 puts array_1.inspect
 puts array_2.inspect
 ```
+```
+class Array
+  def iterate!(code)                     ## method with block 
+    self.each_with_index do |n, i|       ## for each elem "i" get result "n" from 
+      self[i] = code.call(n)             ## code array.iterate!(method(:square)) 
+    end
+  end
+end
 
+def square(n)                          
+  n ** 2
+end
+
+array = [1, 2, 3, 4]
+
+array.iterate!(method(:square))          ## 1) get data from array  
+                                         ## 2) rules to what we should do with each elem from method iterate
+puts array.inspect                       ## 3) calculate each elem by method square
+
+# => [1, 4, 9, 16]
+```
+
+
+
+
+
+based on http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
 
 
