@@ -62,7 +62,7 @@ end
 
 puts array.inspect
 ```
-The difference between blocks and Procs is that a block is a Proc that cannot be saved, and as such, is a one time use solution. Code which is reusable is called a Proc.
+The difference between blocks and Procs is that a block is a Proc that cannot be saved, and as such, is a one time use solution. Code which is reusable is called a Proc. Procs are objects, blocks are not. Proc is an instance of the Proc class.
 ```
 class Array
   def iterate!(code)
@@ -87,9 +87,9 @@ puts array_2.inspect
 ```
 ```
 class Array
-  def iterate!(code)                     ## method with block 
-    self.each_with_index do |n, i|       ## for each elem "i" get result "n" from 
-      self[i] = code.call(n)             ## code array.iterate!(method(:square)) 
+  def iterate!(code)                     ## 
+    self.each_with_index do |n, i|       ## each elem i of array should get meaning n 
+      self[i] = code.call(n)             ## 
     end
   end
 end
@@ -100,15 +100,50 @@ end
 
 array = [1, 2, 3, 4]
 
-array.iterate!(method(:square))          ## 1) get data from array  
-                                         ## 2) rules to what we should do with each elem from method iterate
+array.iterate!(method(:square))          ## 1) take data from array  
+                                         ## 2) take rules to what we should do with each elem from method iterate
 puts array.inspect                       ## 3) calculate each elem by method square
 
 # => [1, 4, 9, 16]
 ```
+##### Differences Lambdas,Procs
 
+1. Lambdas check the number of arguments, while procs do not
+```
+lam = lambda { |x| puts x }    # creates a lambda that takes 1 argument
+lam.call(2)                    # prints out 2
+lam.call                       # ArgumentError: wrong number of arguments (0 for 1)
+lam.call(1,2,3)                # ArgumentError: wrong number of arguments (3 for 1)
+```
+Procs don’t care if they are passed the wrong number of arguments.
 
+```
+proc = Proc.new { |x| puts x } # creates a proc that takes 1 argument
+proc.call(2)                   # prints out 2
+proc.call                      # returns nil
+proc.call(1,2,3)               # prints out 1 and forgets about the extra arguments
+```
 
+2. Lambdas and procs treat the `return` keyword differently `return` inside of a lambda triggers the code right outside of the lambda code
+```
+def lambda_test
+  lam = lambda { return }
+  lam.call
+  puts "Hello world"
+end
+
+lambda_test                 # calling lambda_test prints 'Hello World'
+```
+‘return’ inside of a proc triggers the code outside of the method where the proc is being executed
+```
+def proc_test
+  proc = Proc.new { return }
+  proc.call
+  puts "Hello world"
+end
+
+proc_test                 # calling proc_test prints nothing
+```
 
 
 based on http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
