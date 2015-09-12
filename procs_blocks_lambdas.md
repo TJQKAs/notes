@@ -106,7 +106,7 @@ puts array.inspect                       ## 3) calculate each elem by method squ
 
 # => [1, 4, 9, 16]
 ```
-##### Differences Lambdas,Procs
+##### Differences between Lambdas and Procs
 
 1. Lambdas check the number of arguments, while procs do not
 ```
@@ -145,7 +145,13 @@ end
 proc_test                 # calling proc_test prints nothing
 ```
 
+Thefore:
+* Procs are objects, blocks are not
+* At most one block can appear in an argument list
+* Lambdas check the number of arguments, while procs do not
+* Lambdas and procs treat the ‘return’ keyword differently
 
-based on http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
-
+Based on :
+*  http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
+*  http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/
 
