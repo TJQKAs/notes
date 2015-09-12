@@ -20,17 +20,17 @@
 If we want to make our own `collect!` method? We build a method called `iterate!` and see.
 ```
 class Array                          
-  def iterate!                                        ## create method iterate! which uses
-    self.each_with_index do |n, i|                    ## itself to each of array elem
-      self[i] = yield(n)
-    end
+  def iterate!                                        ## create method iterate! with block 
+    self.each_with_index do |n, i|                    ## to each of array elem i, we return "n"    
+      self[i] = yield(n)                              ## yield(n) refers to method iterate! which makes 
+    end                                               ## calculations
   end
 end
 
 array = [1, 2, 3, 4]
 
-array.iterate! do |n|
-  n ** 2
+array.iterate! do |n|                               ## our method iterate!, where we square our elems of array 
+  n ** 2                                            ## our calculations for "n" was sent  to "yield "(n)"
 end
 
 puts array.inspect
@@ -44,8 +44,47 @@ puts array.inspect
 4.  Yield outputs the value returned by the block, and rewrites the value in the array.
 5.  This continues for each element in the array.
 
+#####Procs 
+```
+class Array
+  def iterate!(&code)      
+    self.each_with_index do |n, i|
+      self[i] = code.call(n)            ## instead of ' self[i] = yield(n) '
+    end
+  end
+end
 
+array = [1, 2, 3, 4]
 
+array.iterate! do |n|
+  n ** 2
+end
+
+puts array.inspect
+```
+The difference between blocks and Procs is that a block is a Proc that cannot be saved, and as such, is a one time use solution. Code which is reusable is called a Proc.
+```
+class Array
+  def iterate!(code)
+    self.each_with_index do |n, i|
+      self[i] = code.call(n)
+    end
+  end
+end
+
+array_1 = [1, 2, 3, 4]
+array_2 = [2, 3, 4, 5]
+
+square = Proc.new do |n|
+  n ** 2
+end
+
+array_1.iterate!(square)
+array_2.iterate!(square)
+
+puts array_1.inspect
+puts array_2.inspect
+```
 
 
 
