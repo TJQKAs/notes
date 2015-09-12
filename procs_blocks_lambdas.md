@@ -108,7 +108,7 @@ puts array.inspect                       ## 3) calculate each elem by method squ
 ```
 ##### Differences between Lambdas and Procs
 
-1. Lambdas check the number of arguments, while procs do not
+*Lambdas check the number of arguments, while procs do not*
 ```
 lam = lambda { |x| puts x }    # creates a lambda that takes 1 argument
 lam.call(2)                    # prints out 2
@@ -124,7 +124,7 @@ proc.call                      # returns nil
 proc.call(1,2,3)               # prints out 1 and forgets about the extra arguments
 ```
 
-2. Lambdas and procs treat the `return` keyword differently `return` inside of a lambda triggers the code right outside of the lambda code
+*Lambdas and procs treat the `return` keyword differently `return` inside of a lambda triggers the code right outside of the lambda code*
 ```
 def lambda_test
   lam = lambda { return }
